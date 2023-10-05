@@ -1,4 +1,17 @@
 steps:
+  - id: 'terraform init'
+    name: 'hashicorp/terraform:1.0.0'
+    script: terraform init
+    dir: ./exemple/cloudbuild-terraform
+  - id: 'terraform plan'
+    name: 'hashicorp/terraform:1.0.0'
+    script: terraform plan
+    dir: ./exemple/cloudbuild-terraform
+  - id: 'terraform apply'
+    name: 'hashicorp/terraform:1.0.0'
+    script: terraform apply --auto-approve
+    dir: ./exemple/cloudbuild-terraform
+    
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'us-central1-docker.pkg.dev/artifact-399517/website-tools/website-image', '.']
   
